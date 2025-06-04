@@ -1,0 +1,68 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gitlab.desy.de/melanie.nentwich/DESY_beamline_finder:
+      branch: main
+      repo: https://gitlab.desy.de/melanie.nentwich/DESY_beamline_finder
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder git:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-bronze-rattlesnake.sh
+        container: qc.acc_scanty-cornflower-gibbon
+  QC.Doc:
+    repos:
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.hazy-rose-pinscher.sh
+        container: qc.doc_paltry-chocolate-seahorse
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-brown-lemming.sh
+        container: qc.doc_snippy-viridian-buzzard
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-yellow-urchin.sh
+        container: qc.doc_hilly-cyan-cassowary
+  QC.Lic:
+    repos:
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-mauve-foxhound.sh
+        container: qc.lic_sloppy-aqua-magpie
+  QC.Sec:
+    repos:
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.bluesy-sepia-crane.sh
+        container: qc.sec_shaky-red-armadillo
+  QC.Sty:
+    repos:
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-wisteria-dachsbracke.sh
+        container: qc.sty_wimpy-blue-kingfisher
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.seedy-sangria-catfish.sh
+        container: qc.sty_leaky-beige-cassowary
+  QC.Uni:
+    repos:
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-khaki-caterpillar.sh
+        container: qc.uni_sickly-magnolia-eagle
+  QC.Ver:
+    repos:
+      gitlab.desy.de/melanie.nentwich/DESY_beamline_finder get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.grumpy-maroon-chimpanzee.sh
+        container: qc.ver_cranky-pink-macaque
+timeout: 5400
